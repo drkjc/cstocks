@@ -1,7 +1,7 @@
 class StocksController < ApplicationController
     
     def search 
-        @stocks = Stock.search(params[:symbol])
+        @stock = Stock.search(params[:symbol])
     end
 
 end
