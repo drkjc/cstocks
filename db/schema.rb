@@ -17,8 +17,8 @@ ActiveRecord::Schema.define(version: 2020_05_15_171822) do
     t.string "name"
     t.string "industry"
     t.string "marketcap"
-    t.integer "lastsale"
-    t.integer "ipoyear"
+    t.string "lastsale"
+    t.string "ipoyear"
     t.string "sector"
     t.string "summary_quote"
     t.datetime "created_at", precision: 6, null: false

@@ -5,3 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+NYSEarr = SmarterCSV.process('NYSEcompanylist.csv')
+AMEXarr = SmarterCSV.process('AMEXcompanylist.csv')
+NASDAQarr = SmarterCSV.process('NASDAQcompanylist.csv')

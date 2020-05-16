@@ -5,8 +5,8 @@ class CreateStocks < ActiveRecord::Migration[6.0]
       t.string :name
       t.string :industry
       t.string :marketcap
-      t.integer :lastsale
-      t.integer :ipoyear
+      t.string :lastsale
+      t.string :ipoyear
       t.string :sector
       t.string :summary_quote
 
