@@ -20,7 +20,7 @@ class Stock < ApplicationRecord
         stock_hash = {}
         stock.each do |name, value|
             attr_name = name.split(" ")[1].to_s.underscore
-            attr_name == "type" ? attr_name = "industry_type" : nil
+            attr_name == "type" ? attr_name = "industry" : nil
             stock_hash[attr_name] = value
         end
         stock_hash
