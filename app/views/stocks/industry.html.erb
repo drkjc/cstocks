@@ -1,0 +1,5 @@
+<%= content_tag :ul do %>
+    <% @industry.each do |stock| %>
+        <%= link_to(content_tag(:li, stock.symbol), '#') %> <%= stock.name %>
+    <% end %>
+<% end %>

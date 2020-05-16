@@ -5,7 +5,7 @@ class StocksController < ApplicationController
     end
 
     def industry 
-        raise params.inspect
+        @industry = Stock.all.where(industry: params[:format])
     end
     
     def search 
