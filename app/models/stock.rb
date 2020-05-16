@@ -1,34 +1,20 @@
 class Stock < ApplicationRecord
 
-    # attr_accessor :symbol
-    #               :name
-    #               :region
-    #               :marketOpen
-    #               :marketClose
-    #               :timezone
-    #               :currency
-    #               :price
-
-    # def initialize(args={})
-    #     args.each do |name, value|
-    #         attr_name = name.split(" ")[1].to_s.underscore
-    #         send("#{attr_name}=", value) if respond_to?("#{attr_name}=")
-    #     end
-    # end
-
-    def self.build_stock_hash(stock)
-        stock_hash = {}
-        stock.each do |name, value|
-            attr_name = name.split(" ")[1].to_s.underscore
-            attr_name == "type" ? attr_name = "industry" : nil
-            stock_hash[attr_name] = value
+    def self.group_by_industry 
+        industries = {}
+        Stock.all.each do |stock|
+            if !industries[stock[:industry]]
+                industries[stock[:industry]] = []
+            else 
+                industries[stock[:industry]] << stock unless industries[stock[:industry]].include?(stock)
+            end
         end
-        stock_hash
+        industries
     end
 
     def self.search(symbol)
         response = Request.get("?function=SYMBOL_SEARCH&keywords=#{symbol}&apikey=#{ENV['av_api_key']}")
-        stock_hash = self.build_stock_hash(response["bestMatches"][0])
+        
         @stock = Stock.new(stock_hash)
         @stock.save
         @stock
