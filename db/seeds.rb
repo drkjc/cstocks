@@ -6,17 +6,14 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-def self.build_stock(stock)
-    stock.map do |name, value|
-        attr_name = name.split(" ")[1].to_s.underscore
-        attr_name == "type" ? attr_name = "industry" : nil
-        stock_hash[attr_name] = value
-    end
+SmarterCSV.process(Rails.root.join('lib/tasks/NYSEcompanylist.csv'), headers: true) do |stock|
+    Stock.create(stock)
 end
 
-NYSEarr = SmarterCSV.process('NYSEcompanylist.csv').each do |stock|
-    build_stock(stock)
+SmarterCSV.process(Rails.root.join('lib/tasks/NASDAQcompanylist.csv'), headers: true) do |stock|
+    Stock.create(stock)
 end
-    
-AMEXarr = SmarterCSV.process('AMEXcompanylist.csv')
-NASDAQarr = SmarterCSV.process('NASDAQcompanylist.csv')
+
+SmarterCSV.process(Rails.root.join('lib/tasks/AMEXcompanylist.csv'), headers: true) do |stock|
+    Stock.create(stock)
+end
