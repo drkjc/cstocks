@@ -1,7 +1,11 @@
 class StocksController < ApplicationController
 
-    def index 
+    def industries 
         @industries = Stock.group_by_industry
+    end
+
+    def industry 
+        raise params.inspect
     end
     
     def search 

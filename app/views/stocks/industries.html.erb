@@ -1,0 +1,9 @@
+<%= content_tag :ul do %>
+    <% @industries.each do |ind, stocks| %>
+        <% if ind == 'n/a' %>
+           <%= link_to(content_tag(:li, 'Other'), '#') %>
+        <% else %>
+           <%= link_to(content_tag(:li, ind), industry_path(ind)) %>
+        <% end %>
+    <% end %>
+<% end %>
