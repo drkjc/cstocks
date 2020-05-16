@@ -9,6 +9,7 @@ class CreateStocks < ActiveRecord::Migration[6.0]
       t.string :ipoyear
       t.string :sector
       t.string :summary_quote
+      t.boolean :available, default: false
 
       t.timestamps
     end

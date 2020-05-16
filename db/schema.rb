@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2020_05_15_171822) do
     t.string "ipoyear"
     t.string "sector"
     t.string "summary_quote"
+    t.boolean "available", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
