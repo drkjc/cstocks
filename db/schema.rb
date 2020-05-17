@@ -10,13 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_17_040319) do
+ActiveRecord::Schema.define(version: 2020_05_17_194916) do
+
+  create_table "orders", force: :cascade do |t|
+    t.string "symbol"
+    t.string "name"
+    t.integer "number_of_shares", default: 0
+    t.integer "share_price", default: 0
+    t.integer "balance", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "portfolios", force: :cascade do |t|
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "manager_id"
+    t.string "name"
+    t.integer "balance", default: 0
   end
 
   create_table "stocks", force: :cascade do |t|
@@ -41,6 +53,9 @@ ActiveRecord::Schema.define(version: 2020_05_17_040319) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "superadmin_role", default: false
+    t.boolean "manager_role", default: false
+    t.boolean "user_role", default: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
