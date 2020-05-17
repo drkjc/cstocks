@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_17_182318) do
+ActiveRecord::Schema.define(version: 2020_05_17_185128) do
 
   create_table "orders", force: :cascade do |t|
     t.string "symbol"
@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(version: 2020_05_17_182318) do
 
   create_table "portfolios", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "manager_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
