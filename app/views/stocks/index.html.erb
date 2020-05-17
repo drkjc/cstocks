@@ -1,5 +1,5 @@
 <%= content_tag :ul do %>
     <% @stocks.each do |stock| %>
-        <%= link_to(content_tag(:li, stock.symbol), stock_path(stock)) %> <% stock.name %>
+        <%= link_to(content_tag(:li, stock.symbol), stock_path(stock)) %> <%= stock.name.gsub('&#39;', '\'') %>
     <% end %>
 <% end %>

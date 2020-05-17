@@ -2,6 +2,8 @@ class Stock < ApplicationRecord
 
     @endpoint = ENV['av_api_key']
 
+    #rembmer to remove stocks w/ weird characters in their symbols
+
     def self.alter_api_keys(response)
         stock = {}
         response.each do |k, v|
