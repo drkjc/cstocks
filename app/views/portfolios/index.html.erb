@@ -1,1 +1,6 @@
 Welcome
+
+<%= form_for @portfolio do |f| %>
+    Portolio Name:<%= f.text_field 'portfolio' %>
+    <%= f.submit Create Portfolio %>
+<% end %>
