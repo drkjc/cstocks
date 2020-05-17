@@ -1,0 +1,6 @@
+
+<%= content_tag :ul do %>
+    <% @portfolios.each do |p| %>
+     <%= link_to(content_tag(:li, p.name), portfolio_path(portfolio)) %>
+    <% end %>
+<% end %>

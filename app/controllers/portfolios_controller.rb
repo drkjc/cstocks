@@ -2,23 +2,29 @@ class PortfoliosController < ApplicationController
     before_action :authenticate_user!
 
     def index
-        if current_user.portfolio
-            redirect_to portfolio_path(current_user.portfolio)
+        if !current_user.portfolios.empty?
+            redirect_to list_path
         else
             @portfolio = Portfolio.new
         end
     end
 
+    def list
+        @portfolios = current_user.portfolios
+    end
+
     def show
-        raise params.inspect
+        @portfolio = Portfolio.find(params[:id])
+        raise @portfolio.inspect
     end
 
     def create
         @portfolio = Portfolio.new(portfolio_params)
         @portfolio.user_id = current_user.id 
-        @portfolio.set_manager_id 
+        @portfolio.manager_id = Portfolio.set_manager_id 
         @portfolio.save
-        @portfolio
+        binding.pry
+        redirect_to portfolio_path(@portfolio)
     end
 
     private 
