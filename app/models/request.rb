@@ -1,9 +1,9 @@
 class Request
     class << self
-        def where(resource_path, query = {}, options = {})
-            response, status = get_json(resource_path, query)
-            status == 200 ? response : errors(response)
-        end
+        # def where(resource_path, query = {}, options = {})
+        #     response, status = get_json(resource_path, query)
+        #     status == 200 ? response : errors(response)
+        # end
     
         def get(id)
             response, status = get_json(id)
