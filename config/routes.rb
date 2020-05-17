@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :portfolios
   resources :stocks
   get '/industry/id', to: 'stocks#industry', as: 'industry'
