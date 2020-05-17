@@ -1,10 +1,13 @@
-Your portfolio
+Your portfolio <%= link_to 'My portfolios', portfolios_path %>
 
 <h1><%= @portfolio.name %></h1>
+<% if can? :delete, @portfolio %> 
+    <%= link_to 'Delete', @portfolio, method: "delete", data: { confirm: "Are you sure?" } %>
+<% end %>
 $<%= @portfolio.balance %>
 
 <% if @portfolio.orders.empty? %>
-    Your portfolio is empty.
+    Your portfolio is empty. Check out our <%= link_to 'stocks', industries_path %>
 <% else %>
     <%= content_tag :ul do %>
         <% @portfolio.orders.stocks.each do |stock| %>
