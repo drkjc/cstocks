@@ -1,3 +1,5 @@
+<%= link_to 'My Portfolios', portfolios_path %>| <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+
 <%= form_for @portfolio do |f| %>
     Portolio Name:<%= f.text_field :name %>
     Account Balance: <%= f.text_field :balance %>

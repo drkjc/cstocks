@@ -3,7 +3,7 @@ class PortfoliosController < ApplicationController
     load_and_authorize_resource
 
     def index
-        if current_user.portfolios.empty?
+        if current_user.portfolios.empty? && !current_user.manager_role
             redirect_to new_portfolio_path
         else
            @portfolios = current_user.portfolios

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_17_203959) do
+ActiveRecord::Schema.define(version: 2020_05_17_211506) do
 
   create_table "orders", force: :cascade do |t|
     t.string "symbol"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2020_05_17_203959) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
     t.integer "balance", default: 0
+    t.integer "manager_id"
   end
 
   create_table "stocks", force: :cascade do |t|

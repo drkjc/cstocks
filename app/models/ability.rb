@@ -10,10 +10,12 @@ class Ability
       #user ||= User.new # guest user (not logged in)
       if user.present?
         can :crud, Portfolio, user_id: user.id
+        can :manage, Stock
         #can :read, Order, user_id: user.id
 
         if user.manager_role? 
-          can :manage, User 
+          can :crud, User
+          can :crud, Portfolio
           can :crud, Order
 
           if user.superadmin_role?

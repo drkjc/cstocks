@@ -1,7 +1,18 @@
-Welcome
+Welcome | <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
 
-<%= content_tag :ul do %>
+<% if can? :crud, Order %>
+    <% Portfolio.all.each do |p| %>
+        <% if p.manager_id == current_user.id %>
+            <h3>Users</h3>
+            <%= content_tag :ul do %>
+                <%= link_to(content_tag(:li, p.user.username), portfolio_path(p)) %>
+            <% end %>
+        <% end %>
+    <% end %>
+<% else %>
     <% @portfolios.each do |p| %>
-     <%= link_to(content_tag(:li, p.name), portfolio_path(p)) %>
+        <%= content_tag :ul do %>
+            <%= link_to(content_tag(:li, p.name), portfolio_path(p)) %>
+        <% end %>
     <% end %>
 <% end %>

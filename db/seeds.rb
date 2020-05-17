@@ -13,6 +13,10 @@
 # SmarterCSV.process(Rails.root.join('lib/tasks/NASDAQcompanylist.csv'), headers: true) do |stock|
 #     Stock.create(stock)
 # end
+User.create(email: 'derek@test.com', password: 'password')
+User.create(email: 'kelley@test.com', password: 'password', manager_role: true)
+Portfolio.create(name: 'personal', balance: 1000, user_id: 1, manager_id: 2)
+# Order.create(symbol: 'xxii', name: '22nd Century Group, Inc', portfolio_id: 1)
 
 SmarterCSV.process(Rails.root.join('lib/tasks/AMEXcompanylist.csv'), headers: true) do |stock|
     Stock.create(stock)

@@ -1,16 +1,19 @@
-Your portfolio <%= link_to 'My portfolios', portfolios_path %>
+<%= link_to 'My portfolios', portfolios_path %> | <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
 
 <h1><%= @portfolio.name %></h1>
-<% if can? :delete, @portfolio %> 
+
+<% if can? :crud, User %> 
     <%= link_to 'Delete', @portfolio, method: "delete", data: { confirm: "Are you sure?" } %>
 <% end %>
-$<%= @portfolio.balance %>
+
+<span>Check out our <%= link_to 'stocks', industries_path(portfolio_id: @portfolio.id) %></span>
+<h3>Current Balance: $<%= @portfolio.balance %></h3> 
 
 <% if @portfolio.orders.empty? %>
-    Your portfolio is empty. Check out our <%= link_to 'stocks', industries_path %>
+    Your portfolio is empty.
 <% else %>
     <%= content_tag :ul do %>
-        <% @portfolio.orders.stocks.each do |stock| %>
+        <% @portfolio.orders.each do |stock| %>
             <%= link_to(content_tag(:li, stock.symbol), stock_path(stock)) %> <%= stock.name.gsub('&#39;', '\'') %>
         <% end %>
     <% end %>

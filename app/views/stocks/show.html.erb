@@ -1,3 +1,7 @@
+<%= link_to 'My Portfolios', portfolios_path %>
+
 <h1><%= @stock.symbol %></h1>
-<h3><%= @prices["price"] %></h3>
-<%= @stock.summary_quote %>
+<h2><%= @stock.name %></h2>
+<h3>Current Price: $<%= @prices["price"] %></h3>
+<%= link_to 'Read More', @stock.summary_quote %>
+

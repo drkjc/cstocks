@@ -1,5 +1,4 @@
 class Stock < ApplicationRecord
-    belongs_to :order
 
     @endpoint = ENV['av_api_key']
 
