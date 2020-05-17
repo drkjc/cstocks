@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :portfolios
   resources :stocks
   get '/industry/id', to: 'stocks#industry', as: 'industry'
   get '/industries', to: 'stocks#industries', as: 'industries'
