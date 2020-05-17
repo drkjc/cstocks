@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   root to: 'stocks#index'
   devise_for :users
   resources :portfolios
-  get '/my_portfolios', to: 'portfolios#list', as: 'list'
   resources :stocks
   get '/industry/id', to: 'stocks#industry', as: 'industry'
   get '/industries', to: 'stocks#industries', as: 'industries'

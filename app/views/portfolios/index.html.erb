@@ -1,7 +1,7 @@
 Welcome
 
-<%= form_for @portfolio do |f| %>
-    Portolio Name:<%= f.text_field :name %>
-    Account Balance: <%= f.text_field :balance %>
-    <%= f.submit %>
+<%= content_tag :ul do %>
+    <% @portfolios.each do |p| %>
+     <%= link_to(content_tag(:li, p.name), portfolio_path(portfolio)) %>
+    <% end %>
 <% end %>
