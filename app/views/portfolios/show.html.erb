@@ -6,7 +6,7 @@
     <%= link_to 'Delete', @portfolio, method: "delete", data: { confirm: "Are you sure?" } %>
 <% end %>
 
-<span>Check out our <%= link_to 'stocks', industries_path %></span>
+<span>Check out our <%= link_to 'stocks', industries_path(@portfolio) %></span>
 <h3>Current Balance: $<%= @portfolio.balance %></h3> 
 
 <% if @portfolio.orders.empty? %>

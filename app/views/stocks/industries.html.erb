@@ -2,9 +2,9 @@
 <%= content_tag :ul do %>
     <% @industries.each do |ind, stocks| %>
         <% if ind == 'n/a' %>
-           <%= link_to(content_tag(:li, 'Other'), industry_path(ind)) %>
+           <%= link_to(content_tag(:li, 'Other'), portfolio_industry_path(portfolio_id: @portfolio.id, slug: ind)) %>
         <% else %>
-           <%= link_to(content_tag(:li, ind), industry_path(ind)) %>
+           <%= link_to(content_tag(:li, ind), portfolio_industry_path(portfolio_id: @portfolio.id, slug: ind)) %>
         <% end %>
     <% end %>
 <% end %>

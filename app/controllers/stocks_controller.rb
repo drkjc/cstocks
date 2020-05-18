@@ -12,18 +12,20 @@ class StocksController < ApplicationController
     end
 
     def show
-        @portfolio = Portfolio.find(session[:portfolio_id])
+        @portfolio = Portfolio.find(params[:portfolio_id])
         @stock = Stock.find(params[:id])
         @prices = Stock.find_from_api(@stock.symbol)
     end
 
     def industries 
+        @portfolio = Portfolio.find(params[:id])
         @industries = Stock.group_by_industry
     end
 
     def industry
-        @industry_name = params[:format]
-        @industry = Stock.all.where(industry: params[:format])
+        @portfolio = Portfolio.find(params[:portfolio_id])
+        @industry_name = params[:slug]
+        @industry = Stock.all.where(industry: params[:slug])
     end
     
     def search 

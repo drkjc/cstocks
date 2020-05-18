@@ -28,10 +28,6 @@ class PortfoliosController < ApplicationController
 
     private 
 
-    def set_portfolio(id)
-        session[:portfolio_id] = id
-    end
-
     def portfolio_params
         params.require(:portfolio).permit(:name, :balance)
     end
