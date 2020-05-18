@@ -3,7 +3,7 @@
 <h1><%= @portfolio.name %></h1>
 
 <% if can? :crud, User %> 
-    <%= link_to 'Delete', @portfolio, method: "delete", data: { confirm: "Are you sure?" } %>
+    <%= link_to 'Delete Portfolio', @portfolio, method: "delete", data: { confirm: "Are you sure?" } %>
 <% end %>
 
 <span>Check out our <%= link_to 'stocks', industries_path(@portfolio) %></span>

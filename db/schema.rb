@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_18_000407) do
+ActiveRecord::Schema.define(version: 2020_05_18_043016) do
 
   create_table "orders", force: :cascade do |t|
     t.string "symbol"
     t.string "name"
     t.integer "number_of_shares", default: 0
-    t.integer "share_price", default: 0
+    t.string "share_price", default: "0"
     t.integer "balance", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

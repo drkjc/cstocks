@@ -5,7 +5,12 @@ Welcome | <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
         <% if p.manager_id == current_user.id %>
             <h3>Users</h3>
             <%= content_tag :ul do %>
-                <%= link_to(content_tag(:li, p.user.username), portfolio_path(p)) %>
+                <%= link_to(content_tag(:li, p.user.username), portfolio_path(p)) %> 
+                <% p.orders.each do |o| %>
+                    <% if o.status == "pending" %>
+                        Pending Order: <%= link_to o.symbol, edit_portfolio_order_path(portfolio_id: o.portfolio.id, id: o.id) %>
+                    <% end %>
+                <% end %>
             <% end %>
         <% end %>
     <% end %>
