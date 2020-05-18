@@ -13,8 +13,8 @@
     Your portfolio is empty.
 <% else %>
     <%= content_tag :ul do %>
-        <% @portfolio.orders.each do |stock| %>
-            <%= link_to(content_tag(:li, stock.symbol), stock_path(stock)) %> <%= stock.name.gsub('&#39;', '\'') %>
+        <% @portfolio.orders.each do |order| %>
+            <%= content_tag(:li, order.symbol) %> <%= order.name.gsub('&#39;', '\'') %> <u>Status:</u> <strong><%= order.status %></strong> <u>Shares:</u> <strong><%= order.number_of_shares %></strong>
         <% end %>
     <% end %>
 <% end %>
