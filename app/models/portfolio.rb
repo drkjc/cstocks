@@ -12,6 +12,7 @@ class Portfolio < ApplicationRecord
         self.orders.map do |o|
             response = Stock.find_from_api(o.symbol)
             o.share_price = response["price"]
+            o.balance = response["price"].to_f * o.number_of_shares.to_f
             o.save
         end
         self.save

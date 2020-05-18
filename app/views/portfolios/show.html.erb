@@ -1,6 +1,6 @@
 <%= link_to 'My portfolios', portfolios_path %> | <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
 
-<h1><%= @portfolio.name %></h1>
+<h1><%= @portfolio.name %> | %<%= @portfolio.balance / (@portfolio.balance + @portfolio.orders.inject(0) { |sum, o| sum + o.balance }) %></h1> 
 
 <% if can? :crud, User %> 
     <%= link_to 'Delete Portfolio', @portfolio, method: "delete", data: { confirm: "Are you sure?" } %>
@@ -8,7 +8,7 @@
 
 <span>Check out our <%= link_to 'stocks', industries_path(@portfolio) %></span>
 <h3>Trading Balance: $<%= @portfolio.balance %></h3> 
-<h3>Holdings: $<%= @portfolio.orders.inject(0) { |sum, o| sum + o.balance} %></h3>
+<h3>Holdings: $<%= @portfolio.orders.inject(0) { |sum, o| sum + o.balance } %></h3>
 
 <% if @portfolio.orders.empty? %>
     Your portfolio is empty.
@@ -21,7 +21,14 @@
             <% else %>
                 Bought at: $<%= order.purchase_price %>
             <% end %>
-            Current Price: $<%= order.share_price %>
+            Current Price: $<%= order.share_price %> 
+            <% if order.purchase_price.to_f / order.share_price.to_f > 1 %>
+                Up: <%= order.purchase_price.to_f / order.share_price.to_f %>%
+            <% elsif order.purchase_price.to_f / order.share_price.to_f < 1%>
+                Down: <%= order.purchase_price.to_f / order.share_price.to_f %>%
+            <% else %>
+                Holding Even
+            <% end %>
         <% end %>
     <% end %>
 <% end %>
