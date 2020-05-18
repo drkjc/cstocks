@@ -18,6 +18,7 @@ class OrdersController < ApplicationController
         @order.status = "success"
         @order.portfolio.balance -= @order.share_price.to_f * @order.number_of_shares.to_f
         @order.portfolio.save
+        @order.save
         redirect_to portfolio_path(@order.portfolio)
     end
 

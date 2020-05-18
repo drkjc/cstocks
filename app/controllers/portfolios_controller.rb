@@ -23,6 +23,7 @@ class PortfoliosController < ApplicationController
 
     def show
         @portfolio = Portfolio.find(params[:id])
+        @portfolio.get_current_prices
     end
 
     private 
