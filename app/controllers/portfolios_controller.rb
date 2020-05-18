@@ -23,9 +23,14 @@ class PortfoliosController < ApplicationController
 
     def show
         @portfolio = Portfolio.find(params[:id])
+        set_portfolio(@portfolio.id)
     end
 
     private 
+
+    def set_portfolio(id)
+        session[:portfolio_id] = id
+    end
 
     def portfolio_params
         params.require(:portfolio).permit(:name, :balance)

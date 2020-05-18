@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :portfolios
   resources :stocks
+  resources :orders
   get '/industry/id', to: 'stocks#industry', as: 'industry'
   get '/industries', to: 'stocks#industries', as: 'industries'
   get '/search/:symbol', to: 'stocks#search', as: 'search'

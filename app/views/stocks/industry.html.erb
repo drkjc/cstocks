@@ -1,3 +1,4 @@
+<h1><%= @industry_name %></h1>
 <%= content_tag :ul do %>
     <% @industry.each do |stock| %>
         <%= link_to(content_tag(:li, stock.symbol), stock_path(stock)) %> <%= stock.name %>

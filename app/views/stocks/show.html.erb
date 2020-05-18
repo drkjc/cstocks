@@ -5,3 +5,14 @@
 <h3>Current Price: $<%= @prices["price"] %></h3>
 <%= link_to 'Read More', @stock.summary_quote %>
 
+<h3>Request Trade:<h3>
+<%= form_for @portfolio.orders.build do |o| %>
+    <%= o.label :symbol %>
+    <%= o.text_field :symbol, :value => @stock.symbol %>
+    <%= o.label :number_of_shares %>
+    <%= o.number_field :number_of_shares %>
+    <%= o.label :current_price %>
+    <%= o.text_field :current_price, :value => @prices["price"], :disabled => true %>
+    <%= o.submit 'Request Trade' %>
+<% end %>
+
