@@ -5,6 +5,7 @@ class Stock < ApplicationRecord
     #rembmer to remove stocks w/ weird characters in their symbols
 
     def self.alter_api_keys(response)
+        binding.pry
         stock = {}
         response.each do |k, v|
             if v.include?('.')
