@@ -5,14 +5,9 @@ class Stock < ApplicationRecord
     #rembmer to remove stocks w/ weird characters in their symbols
 
     def self.alter_api_keys(response)
-        binding.pry
         stock = {}
         response.each do |k, v|
-            if v.include?('.')
-                stock[k.sub(/\d.. /, '')] = v.slice(/\-\d.\d\d|\d\d.\d\d|\d.\d\d/)
-            else
-                stock[k.sub(/\d.. /, '')] = v
-            end 
+            stock[k.sub(/\d.. /, '')] = v
         end
         stock
     end

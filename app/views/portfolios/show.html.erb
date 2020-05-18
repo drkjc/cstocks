@@ -1,5 +1,5 @@
 <%= link_to 'My portfolios', portfolios_path %> | <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
-
+<#% binding.pry %>
 <h1><%= @portfolio.name %> | %<%= @portfolio.balance / (@portfolio.balance + @portfolio.orders.inject(0) { |sum, o| sum + o.balance }) %></h1> 
 
 <% if can? :crud, User %> 
@@ -15,7 +15,7 @@
 <% else %>
     <%= content_tag :ul do %>
         <% @portfolio.orders.each do |order| %>
-            <%= content_tag(:li, order.symbol) %> <%= order.name.gsub('&#39;', '\'') %> | Total: $<%= order.number_of_shares * order.share_price.to_f %>
+            <%= content_tag(:li, order.symbol) %> <%= order.name.gsub('&#39;', '\'') %> | Total: $<%= number_with_precision((order.number_of_shares * order.share_price.to_f), precision: 2) %>
 
             <u>Status:</u> <strong><%= order.status %></strong> 
             <u>Shares:</u> <strong><%= order.number_of_shares %></strong>
@@ -24,11 +24,11 @@
             <% else %>
                 Bought at: $<%= order.purchase_price %>
             <% end %>
-            Current Price: $<%= order.share_price %> 
-            <% if order.purchase_price.to_f / order.share_price.to_f > 1 %>
-                Up: <%= order.purchase_price.to_f / order.share_price.to_f %>%
-            <% elsif order.purchase_price.to_f / order.share_price.to_f < 1%>
-                Down: <%= order.purchase_price.to_f / order.share_price.to_f %>%
+            Current Price: $<%= number_with_precision(order.share_price, precision: 2) %> 
+            <% if order.purchase_price.to_f / order.share_price.to_f < 1 %>
+                Up: <%= number_with_precision((order.purchase_price.to_f / order.share_price.to_f), precision: 2) %>%
+            <% elsif order.purchase_price.to_f / order.share_price.to_f > 1%>
+                Down: <%= number_with_precision((order.purchase_price.to_f / order.share_price.to_f), precision: 2) %>%
             <% else %>
                 Holding Even
             <% end %>
