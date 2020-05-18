@@ -9,11 +9,12 @@ class Portfolio < ApplicationRecord
 #     end
 
     def get_current_prices
-        current_price_hash = {}
-        self.orders.each do |o|
+        self.orders.map do |o|
             response = Stock.find_from_api(o.symbol)
-            binding.pry
-            current_hash_price
+            o.share_price = response["price"]
+            o.save
         end
+        self.save
     end
+
 end

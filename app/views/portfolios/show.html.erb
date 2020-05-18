@@ -8,7 +8,7 @@
 
 <span>Check out our <%= link_to 'stocks', industries_path(@portfolio) %></span>
 <h3>Trading Balance: $<%= @portfolio.balance %></h3> 
-<h3>Holdings: $<%= @portfolio.orders.collect { |o| o.balance} %></h3>
+<h3>Holdings: $<%= @portfolio.orders.inject(0) { |sum, o| sum + o.balance} %></h3>
 
 <% if @portfolio.orders.empty? %>
     Your portfolio is empty.
@@ -16,7 +16,12 @@
     <%= content_tag :ul do %>
         <% @portfolio.orders.each do |order| %>
             <%= content_tag(:li, order.symbol) %> <%= order.name.gsub('&#39;', '\'') %> <u>Status:</u> <strong><%= order.status %></strong> <u>Shares:</u> <strong><%= order.number_of_shares %></strong>
-            Bought at $<%= order.share_price %>
+            <% if order.status == "pending" %>
+                Held at: $<%= order.purchase_price %>
+            <% else %>
+                Bought at: $<%= order.purchase_price %>
+            <% end %>
+            Current Price: $<%= order.share_price %>
         <% end %>
     <% end %>
 <% end %>

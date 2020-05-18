@@ -5,8 +5,8 @@ Reject Trade
     <%= o.text_field :symbol %>
     <%= o.label :number_of_shares %>
     <%= o.number_field :number_of_shares %>
-    <%= o.label :share_price %>
-    <%= o.number_field :share_price %>
+    <%= o.label :purchase_price %>
+    <%= o.number_field :purchase_price %>
     <%= o.hidden_field :portfolio_id, :value => @portfolio.id %>
     <%= o.hidden_field :name, :value => @order.name %>
     <%= o.submit 'Approve Trade' %>

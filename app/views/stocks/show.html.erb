@@ -13,6 +13,7 @@
     <%= o.number_field :number_of_shares %>
     <%= o.hidden_field :portfolio_id, :value => @portfolio.id %>
     <%= o.hidden_field :share_price, :value => @prices["price"]%>
+    <%= o.hidden_field :purchase_price, :value => @prices["price"] %>
     <%= o.hidden_field :name, :value => @stock.name %>
     <%= o.submit 'Request Trade' %>
 <% end %>
