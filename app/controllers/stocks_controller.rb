@@ -8,7 +8,13 @@ class StocksController < ApplicationController
     end
 
     def index 
-        @stocks = Stock.all 
+        if current_user
+            stock = Stock.find_by(symbol: params[:slug])
+            portfolio = Portfolio.find(params[:portfolio_id])
+            redirect_to portfolio_stock_path(portfolio_id: portfolio.id, id: stock.id)
+        else
+            @stocks = Stock.all 
+        end
     end
 
     def show

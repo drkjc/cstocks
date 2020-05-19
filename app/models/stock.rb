@@ -26,7 +26,6 @@ class Stock < ApplicationRecord
 
     def self.find_from_api(symbol) 
         response = Request.get("https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=#{symbol}&apikey=#{@endpoint}")
-        #binding.pry
         if response["Note"]
             "API LIMIT REACHED"
         else

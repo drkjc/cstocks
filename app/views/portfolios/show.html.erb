@@ -15,7 +15,7 @@
 <% else %>
     <%= content_tag :ul do %>
         <% @portfolio.orders.each do |order| %>
-            <%= content_tag(:li, order.symbol) %> <%= order.stock_name %> | Total: $<%= number_with_precision((order.share_value), precision: 2) %>
+            <%= content_tag(:li, order.symbol) %> <%= link_to order.stock_name, stocks_path(portfolio_id: @portfolio.id, slug: order.symbol) %> | Total: $<%= number_with_precision((order.share_value), precision: 2) %>
             <p>Shares: <%= order.number_of_shares %></p>
             <p>
                 <% if order.status == "success" %>

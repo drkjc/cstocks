@@ -52,6 +52,6 @@ class OrdersController < ApplicationController
     private 
 
     def order_params
-        params.require(:order).permit(:symbol, :name, :number_of_shares, :share_price, :purchase_price, :portfolio_id, :status, :balance)
+        params.require(:order).permit(:symbol, :name, :number_of_shares, :share_price, :purchase_price, :portfolio_id, :status, :balance, :stock_id)
     end
 end
