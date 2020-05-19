@@ -1,0 +1,56 @@
+//@import 'bootstrap/dist/css/bootstrap';
+
+* {
+	margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+div.container navbar.grid-container {
+    display: flex;
+    padding: 30px;
+    background: lightgrey;
+    justify-content: space-between;
+
+    div.sign-links {
+        display: flex;
+    }
+
+    div.sign-links a.nav:hover {
+        box-shadow: 2px 2px black;
+    }
+
+    div.sign-links a.nav {
+        margin: 10px;
+        text-decoration: none;
+        color: black;
+        border: 2px solid white;
+        padding: 5px 20px
+    }
+
+    h1 {
+        margin: 10px;
+    }
+}
+
+div.stock-list-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto;
+    position:relative;
+
+    a {
+        padding: 20px;
+        text-decoration: none;
+        text-align: center;
+        background-color: lightslategrey;
+        color: white;
+        border: 2px solid gold;
+        width: 10rem;
+        height: 9rem;
+    }
+
+    a:hover {
+        font-weight: bolder;
+    }
+}
+

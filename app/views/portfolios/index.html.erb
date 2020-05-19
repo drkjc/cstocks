@@ -1,6 +1,4 @@
-Welcome | 
 <%= link_to 'Sign out', destroy_user_session_path, method: :delete %> | 
-
 <% if can? :filter, Stock %>
     <%=  link_to 'Filter Stocks', managers_filter_path(current_user) %>
 <% end %>
@@ -8,9 +6,9 @@ Welcome |
 <% if can? :crud, Order %>
     <% Portfolio.all.each do |p| %>
         <% if p.manager_id == current_user.id %>
-            <h3>Users</h3>
+            <h3>Customer Portfolios</h3>
             <%= content_tag :ul do %>
-                <%= link_to(content_tag(:li, p.user.username), portfolio_path(p)) %> 
+                <%= link_to(content_tag(:li, p.user.username), portfolio_path(p)) %> <%= p.direction %> <%= number_with_precision(p.return_percentage, precision: 2) %>
                 <% p.orders.each do |o| %>
                     <% if o.status == "pending" %>
                         <p>Purchase Order: <%= link_to o.symbol, edit_portfolio_order_path(portfolio_id: o.portfolio.id, id: o.id) %><p>
@@ -24,7 +22,7 @@ Welcome |
 <% else %>
     <% @portfolios.each do |p| %>
         <%= content_tag :ul do %>
-            <%= link_to(content_tag(:li, p.name), portfolio_path(p)) %>
+            <%= link_to(content_tag(:li, p.name), portfolio_path(p)) %> <%= p.direction %> <%= p.return_percentage %>
         <% end %>
     <% end %>
 <% end %>

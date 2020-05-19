@@ -1,12 +1,22 @@
-<% if current_user %>
-    <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
-<% else %>
-    <%= link_to 'Sign up', new_user_registration_path %>
-    <%= link_to 'Sign in', new_user_session_path %>
-<% end %>
+<navbar class="nav grid-container">
+    <div class="sign-links">
+        <% if current_user %>
+            <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: "nav" %>
+        <% else %>
+            <%= link_to 'Sign up', new_user_registration_path, class: "nav" %>
+            <%= link_to 'Sign in', new_user_session_path, class: "nav" %>
+        <% end %>
+    </div>
+    <h1>cstocks</h1>
+</navbar>
 
-<%= content_tag :ul do %>
-    <% @stocks.each do |stock| %>
-        <%= link_to(content_tag(:li, stock.symbol), stock_path(stock)) %> <%= stock.name.gsub('&#39;', '\'') %>
+<%= content_tag :div, class: "stock-list-container grid-container" do %>
+    <% @stocks.sort_by do |stock| %>
+        <a href="/stocks/<%= stock.id %>" >
+            <div class="stock grid-item" >
+                <%= "#{stock.symbol} | #{stock.name.gsub('&#39;', '\'')}"  %>
+            </div>
+        </a>
     <% end %>
 <% end %>
+
