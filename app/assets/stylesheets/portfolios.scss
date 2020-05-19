@@ -1,3 +1,60 @@
 // Place all the styles related to the Portfolios controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+#portfolio-index-container header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    h1 {
+        padding-left: 1rem;
+    }
+}
+
+#portfolios-container {
+    display: flex;
+
+    a {
+        display: flex;
+        width: 100%;
+        text-decoration: none;
+
+        div.portfolios-list {
+            display:flex;
+            padding: 20px;
+            width: 100%;
+            background: white;
+            justify-content: space-between;
+            align-items: center;
+
+            p, h1 {
+                background: white;
+                text-decoration: none;
+                color: black;
+            }
+
+            .portfolio-info {
+                display: flex;
+                background-color: white;
+
+                p {
+                    margin: 1rem;
+                    font-size: 2rem;
+                }
+
+                p.down {
+                    color: red;
+                }
+
+                p.up {
+                    color: green;
+                }
+            }
+        }
+    }
+
+    a:hover {
+        box-shadow: 2px 2px black;
+    }
+}
