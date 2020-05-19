@@ -8,6 +8,7 @@
 
 <span>Check out our <%= link_to 'stocks', industries_path(@portfolio) %></span>
 <h3>Trading Balance: $<%= number_with_precision(@portfolio.current_balance, precision: 2) %></h3> 
+<% binding.pry %>
 <h3>Holdings: $<%= number_with_precision(@portfolio.holdings, precision: 2) %></h3>
 
 <% if @portfolio.orders.empty? %>
