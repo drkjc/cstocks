@@ -1,4 +1,4 @@
-Reject Trade
+<%= link_to 'Reject Trade', portfolio_order_path(portfolio_id: @portfolio.id, id: @order.id), :method => :delete%>
 
 <%= form_for @order do |o| %>
     <%= o.label :symbol %>

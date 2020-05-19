@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+    before_action :authenticate_user!
+    load_and_authorize_resource
 
     def create
         order = Order.create(order_params)
@@ -20,6 +22,20 @@ class OrdersController < ApplicationController
         @order.portfolio.save
         @order.save
         redirect_to portfolio_path(@order.portfolio)
+    end
+
+    def destroy
+        portfolio = Portfolio.find(params[:id])
+        order = Order.find(params[:id])
+        if can? :crud, Order 
+            order.status = "rejected"
+            order.save 
+            redirect_to portfolio_path(portfolio)
+        else
+            portfolio.orders.delete(order)
+            portfolio.save 
+            redirect_to portfolio_path(portfolio)
+        end
     end
 
     private 

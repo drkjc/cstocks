@@ -18,4 +18,16 @@ class Portfolio < ApplicationRecord
         self.save
     end
 
+    def return_percentage
+        self.balance / (self.balance + self.holdings) === 1 ? "Invest today!" : "%#{self.balance / (self.balance + self.holdings)}"
+    end
+
+    def holdings 
+        self.orders.inject(0) do |sum, o|
+            if o.status == "success"
+                sum + o.balance
+            end
+        end || 0
+    end
+
 end

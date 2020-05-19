@@ -11,6 +11,8 @@ class Ability
       if user.present?
         can :crud, Portfolio, user_id: user.id
         can :manage, Stock
+        can :create, Order 
+        can :destroy, Order
         #can :read, Order, user_id: user.id
 
         if user.manager_role? 
