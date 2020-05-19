@@ -18,7 +18,7 @@ class OrdersController < ApplicationController
         @order = Order.find(params[:id])
         @order.update(order_params)
         @order.status = "success"
-        @order.portfolio.balance -= @order.purchase_price.to_f * @order.number_of_shares.to_f
+        @order.portfolio.current_balance -= @order.purchase_price.to_f * @order.number_of_shares.to_f
         @order.portfolio.save
         @order.save
         redirect_to portfolio_path(@order.portfolio)

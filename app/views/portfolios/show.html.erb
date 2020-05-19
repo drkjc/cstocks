@@ -1,12 +1,12 @@
 <%= link_to 'My portfolios', portfolios_path %> | <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
-<h1><%= @portfolio.name %> | <%= number_with_precision(@portfolio.return_percentage, precision: 2) %></h1> 
+<h1>Hi, <%= current_user.username %>. | <%= @portfolio.name %> | <%= number_with_precision(@portfolio.return_percentage, precision: 2) %></h1> 
 
 <% if can? :crud, User %> 
     <%= link_to 'Delete Portfolio', @portfolio, method: "delete", data: { confirm: "Are you sure?" } %>
 <% end %>
 
 <span>Check out our <%= link_to 'stocks', industries_path(@portfolio) %></span>
-<h3>Trading Balance: $<%= @portfolio.balance %></h3> 
+<h3>Trading Balance: $<%= @portfolio.current_balance %></h3> 
 <h3>Holdings: $<%= @portfolio.holdings %></h3>
 
 <% if @portfolio.orders.empty? %>

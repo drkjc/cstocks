@@ -19,8 +19,7 @@ class Portfolio < ApplicationRecord
     end
 
     def return_percentage
-        binding.pry
-        self.balance / (self.balance + self.holdings) === 1 ? "Invest today!" : "%#{self.balance / (self.balance + self.holdings)}"
+        self.current_balance === self.balance ? "Invest today!" : "%#{(self.current_balance.to_f + self.holdings.to_f) / self.balance.to_f }"
     end
 
     def holdings 

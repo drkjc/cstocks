@@ -16,6 +16,7 @@ class PortfoliosController < ApplicationController
 
     def create
         @portfolio = Portfolio.new(portfolio_params)
+        @portfolio.current_balance = @portfolio.balance
         @portfolio.user_id = current_user.id 
         @portfolio.save
         redirect_to portfolio_path(@portfolio)
@@ -29,6 +30,6 @@ class PortfoliosController < ApplicationController
     private 
 
     def portfolio_params
-        params.require(:portfolio).permit(:name, :balance)
+        params.require(:portfolio).permit(:name, :balance, :current_balance)
     end
 end
