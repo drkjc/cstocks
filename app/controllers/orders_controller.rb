@@ -23,24 +23,33 @@ class OrdersController < ApplicationController
             @order.portfolio.save
             @order.save
             redirect_to portfolio_path(@order.portfolio)
+        elsif @order.status == "success"
+            @order.update(order_params)
+            @order.save
+            redirect_to portfolio_path(@order.portfolio)
         end
     end
 
     def destroy
-        portfolio = Portfolio.find(params[:portfolio_id])
+        if params[:portfolio_id]
+            portfolio = Portfolio.find(params[:portfolio_id])
+        elsif params[:order][:portfolio_id]
+            portfolio = Portfolio.find(params[:order][:portfolio_id])
+        end
         order = Order.find(params[:id])
         if can? :crud, Order 
-            if order.status == "pending"
-                order.status = "rejected"
-                order.save 
-                redirect_to portfolio_path(portfolio)
-            elsif order.status == "success"
+            if order.status == "pending sale"
                 portfolio.current_balance += order.share_price.to_f * order.number_of_shares.to_f 
                 order.status = "sold"
-                order.share_price = 0
+                order.share_price = 0 
                 order.number_of_shares = 0
                 order.save
                 portfolio.save
+                redirect_to portfolio_path(portfolio)
+            elsif order.status == "pending"
+                order.status = "rejected"
+                order.save 
+                redirect_to portfolio_path(portfolio)
             end
         else
             portfolio.orders.delete(order)

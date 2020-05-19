@@ -23,9 +23,11 @@
                 <% elsif order.status == "pending" %>
                    Status: Pending <%= link_to 'Cancel Trade', portfolio_order_path(portfolio_id: @portfolio.id, id: order.id), :method => :delete %>
                 <% elsif order.status == "rejected" %>
-                    Status: Rejected <%= link_to 'Cancel Trade', portfolio_order_path(portfolio_id: @portfolio.id, id: order.id), :method => :delete %>
+                    Status: Rejected <%= link_to 'Delete', portfolio_order_path(portfolio_id: @portfolio.id, id: order.id), :method => :delete %>
+                <% elsif order.status == "pending sale" %>
+                    Status: Pending Sale
                 <% else %>
-                    Status: Sold
+                    Status: Sold <%= link_to 'Delete', portfolio_order_path(portfolio_id: @portfolio.id, id: order.id), :method => :delete %>
                 <% end %>
             </p>
 

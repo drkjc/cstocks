@@ -8,7 +8,9 @@ Welcome | <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
                 <%= link_to(content_tag(:li, p.user.username), portfolio_path(p)) %> 
                 <% p.orders.each do |o| %>
                     <% if o.status == "pending" %>
-                        <p>Pending Order: <%= link_to o.symbol, edit_portfolio_order_path(portfolio_id: o.portfolio.id, id: o.id) %><p>
+                        <p>Purchase Order: <%= link_to o.symbol, edit_portfolio_order_path(portfolio_id: o.portfolio.id, id: o.id) %><p>
+                    <% elsif o.status == "pending sale" %>
+                        <p>Pending Sale: <%= link_to o.symbol, edit_portfolio_order_path(portfolio_id: o.portfolio.id, id: o.id) %></p>
                     <% end %>
                 <% end %>
             <% end %>

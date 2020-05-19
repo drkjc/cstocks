@@ -12,6 +12,8 @@ class Ability
         can :crud, Portfolio, user_id: user.id
         can :manage, Stock
         can :create, Order 
+        can :edit, Order
+        can :update, Order
         can :destroy, Order
         #can :read, Order, user_id: user.id
 

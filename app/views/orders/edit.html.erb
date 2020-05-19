@@ -1,7 +1,7 @@
 
 <%= link_to 'Reject Trade', portfolio_order_path(portfolio_id: @portfolio.id, id: @order.id), :method => :delete%>
 
-<% if @order.status == "pending" %>
+<% if @order.status == "pending" && current_user.manager_role == true %>
     <h1><%= @order.symbol %></h1>
     <h3><%= @order.share_price %><h3>
     <h4><%= link_to 'Nasdaq', @stock.summary_quote %>
@@ -15,17 +15,30 @@
     <% end %>
 <% end %>
 
-<% if @order.status == "success" %>
+<% if @order.status == "success" && current_user.manager_role == false %>
     <h1><%= @order.symbol %></h1>
     <h3><%= @order.share_price %><h3>
     <h4><%= link_to 'Nasdaq', @stock.summary_quote %>
-    <%= form_for @order, method: :delete do |o| %>
+    <%= form_for @order do |o| %>
         <%= o.label :number_of_shares %>
         <%= o.number_field :number_of_shares %>
-        <%= o.hidden_field :symbol %>
         <%= o.hidden_field :share_price %>
+        <%= o.hidden_field :status, :value => "pending sale" %>
         <%= o.hidden_field :portfolio_id, :value => @portfolio.id %>
-        <%= o.hidden_field :name, :value => @order.name %>
+        <%= o.submit 'Request Sale' %>
+    <% end %>
+<% end %>
+
+<% if @order.status == "pending sale" && current_user.manager_role == true %>
+    <h1><%= @order.symbol %></h1>
+    <h3><%= @order.share_price %><h3>
+    <h4><%= link_to 'Nasdaq', @stock.summary_quote %>
+    <%= form_for @order, :method => :delete do |o| %>
+        <%= o.label :number_of_shares %>
+        <%= o.number_field :number_of_shares %>
+        <%= o.hidden_field :share_price %>
+        <%= o.hidden_field :status, :value => "sold" %>
+        <%= o.hidden_field :portfolio_id, :value => @portfolio.id %>
         <%= o.submit 'Sell Stock' %>
     <% end %>
 <% end %>
