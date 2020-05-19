@@ -21,6 +21,7 @@
 
             <% if order.status == "pending" %>
                 Held at: $<%= number_with_precision(order.purchase_price, precision: 2) %>
+                <%= link_to 'Cancel Trade', portfolio_order_path(portfolio_id: @portfolio.id, id: order.id), :method => :delete%>
             <% else %>
                 Bought at: $<%= number_with_precision(order.purchase_price, precision: 2) %>
             <% end %>
@@ -28,7 +29,6 @@
             Current Price: $<%= number_with_precision(order.share_price, precision: 2) %> 
 
             <%= order.order_return_percentage %>
-            <%= link_to 'Cancel Trade', portfolio_order_path(portfolio_id: @portfolio.id, id: order.id), :method => :delete%>
         <% end %>
     <% end %>
 <% end %>
