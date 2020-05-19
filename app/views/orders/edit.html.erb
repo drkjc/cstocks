@@ -1,10 +1,9 @@
 
 <%= link_to 'Reject Trade', portfolio_order_path(portfolio_id: @portfolio.id, id: @order.id), :method => :delete%>
+<%= link_to 'Portfolio', portfolio_path(@order.portfolio) %>
 
 <% if @order.status == "pending" && current_user.manager_role == true %>
-    <h1><%= @order.symbol %></h1>
-    <h3><%= @order.share_price %><h3>
-    <h4><%= link_to 'Nasdaq', @stock.summary_quote %>
+    <%= render partial: "stock_info", locals: { order: @order, stock: @stock } %>
     <%= form_for @order do |o| %>
         <%= o.label :number_of_shares %>
         <%= o.number_field :number_of_shares %>
@@ -15,10 +14,8 @@
     <% end %>
 <% end %>
 
-<% if @order.status == "success" && current_user.manager_role == false %>
-    <h1><%= @order.symbol %></h1>
-    <h3><%= @order.share_price %><h3>
-    <h4><%= link_to 'Nasdaq', @stock.summary_quote %>
+<% if @order.status == "success" %>
+    <%= render partial: "stock_info", locals: { order: @order, stock: @stock } %>
     <%= form_for @order do |o| %>
         <%= o.label :number_of_shares %>
         <%= o.number_field :number_of_shares %>
@@ -29,10 +26,9 @@
     <% end %>
 <% end %>
 
+
 <% if @order.status == "pending sale" && current_user.manager_role == true %>
-    <h1><%= @order.symbol %></h1>
-    <h3><%= @order.share_price %><h3>
-    <h4><%= link_to 'Nasdaq', @stock.summary_quote %>
+    <%= render partial: "stock_info", locals: { order: @order, stock: @stock } %>
     <%= form_for @order, :method => :delete do |o| %>
         <%= o.label :number_of_shares %>
         <%= o.number_field :number_of_shares %>
@@ -42,3 +38,5 @@
         <%= o.submit 'Sell Stock' %>
     <% end %>
 <% end %>
+
+

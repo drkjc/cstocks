@@ -1,0 +1,6 @@
+<%= form_for order do |o| %>
+    <%= o.label :number_of_shares %>
+    <%= o.number_field :number_of_shares %>
+    <%= o.hidden_field :share_price %>
+    <%= o.hidden_field :portfolio_id, :value => @portfolio.id %>
+<% end %>
