@@ -19,7 +19,17 @@ class Portfolio < ApplicationRecord
     end
 
     def return_percentage
-        self.current_balance == self.balance ? "Invest today!" : "%#{(self.current_balance.to_f + self.holdings.to_f) / self.balance.to_f }"
+        if self.current_balance == self.balance 
+            "Invest today!"
+        elsif self.holdings.to_f + self.current_balance.to_f < self.balance 
+             (1.00 - (self.current_balance.to_f + self.holdings.to_f) / self.balance.to_f) * 100
+        else
+            (self.current_balance.to_f + self.holdings.to_f) / self.balance.to_f
+        end
+    end
+
+    def direction
+        self.current_balance + self.holdings > self.balance ? "Up" : "Down"
     end
 
     def holdings 

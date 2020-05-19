@@ -3,12 +3,10 @@
 <% if can? :crud, User %> 
     <%= link_to 'Delete Portfolio', @portfolio, method: "delete", data: { confirm: "Are you sure?" } %>
 <% end %>
-
-<h1>Hi, <%= current_user.username %>. | <%= @portfolio.name %> | <%= number_with_precision(@portfolio.return_percentage, precision: 2) %></h1> 
+<h1>Hi, <%= current_user.username %>. | <%= @portfolio.name %> | <%= @portfolio.direction %> <%= number_with_precision(@portfolio.return_percentage, precision: 2) %>%</h1> 
 
 <span>Check out our <%= link_to 'stocks', industries_path(@portfolio) %></span>
 <h3>Trading Balance: $<%= number_with_precision(@portfolio.current_balance, precision: 2) %></h3> 
-<% binding.pry %>
 <h3>Holdings: $<%= number_with_precision(@portfolio.holdings, precision: 2) %></h3>
 
 <% if @portfolio.orders.empty? %>
