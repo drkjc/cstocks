@@ -1,4 +1,8 @@
-Welcome | <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+Welcome | 
+<%= link_to 'Sign out', destroy_user_session_path, method: :delete %> | 
+<% if can? :filter, Stock %>
+    <%=  link_to 'Filter Stocks', filter_path %>
+<% end %>
 
 <% if can? :crud, Order %>
     <% Portfolio.all.each do |p| %>

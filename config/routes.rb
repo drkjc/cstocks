@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   resources :stocks
   resources :orders
+  get '/filter', to: 'stocks#filter', as: 'filter'
   get '/portfolios/:portfolio_id/industry/:slug', to: 'stocks#industry', as: 'portfolio_industry'
   get '/portfolios/:id/industries', to: 'stocks#industries', as: 'industries'
   get '/search/:symbol', to: 'stocks#search', as: 'search'

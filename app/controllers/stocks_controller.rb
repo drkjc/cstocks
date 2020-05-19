@@ -17,7 +17,12 @@ class StocksController < ApplicationController
         end
     end
 
+    def filter
+        @stocks = Stock.all
+    end
+
     def show
+        raise params.inspect
         @portfolio = Portfolio.find(params[:portfolio_id])
         @stock = Stock.find(params[:id])
         @prices = Stock.find_from_api(@stock.symbol)
