@@ -1,13 +1,14 @@
-<%= link_to 'My portfolios', portfolios_path %> | <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
-<h1>Hi, <%= current_user.username %>. | <%= @portfolio.name %> | <%= number_with_precision(@portfolio.return_percentage, precision: 2) %></h1> 
-
+<%= link_to 'My portfolios', portfolios_path %> | 
+<%= link_to 'Sign out', destroy_user_session_path, method: :delete %> | 
 <% if can? :crud, User %> 
     <%= link_to 'Delete Portfolio', @portfolio, method: "delete", data: { confirm: "Are you sure?" } %>
 <% end %>
 
+<h1>Hi, <%= current_user.username %>. | <%= @portfolio.name %> | <%= number_with_precision(@portfolio.return_percentage, precision: 2) %></h1> 
+
 <span>Check out our <%= link_to 'stocks', industries_path(@portfolio) %></span>
-<h3>Trading Balance: $<%= @portfolio.current_balance %></h3> 
-<h3>Holdings: $<%= @portfolio.holdings %></h3>
+<h3>Trading Balance: $<%= number_with_precision(@portfolio.current_balance, precision: 2) %></h3> 
+<h3>Holdings: $<%= number_with_precision(@portfolio.holdings, precision: 2) %></h3>
 
 <% if @portfolio.orders.empty? %>
     Your portfolio is empty.
@@ -15,20 +16,28 @@
     <%= content_tag :ul do %>
         <% @portfolio.orders.each do |order| %>
             <%= content_tag(:li, order.symbol) %> <%= order.stock_name %> | Total: $<%= number_with_precision((order.share_value), precision: 2) %>
-
-            <u>Status:</u> <strong><%= order.status %></strong> 
-            <u>Shares:</u> <strong><%= order.number_of_shares %></strong>
+            <p>Shares: <%= order.number_of_shares %></p>
+            <p>
+                <% if order.status == "success" %>
+                    <%= link_to 'Request Sell', edit_portfolio_order_path(portfolio_id: @portfolio.id, id: order.id) %>
+                <% elsif order.status == "pending" %>
+                   Status: Pending <%= link_to 'Cancel Trade', portfolio_order_path(portfolio_id: @portfolio.id, id: order.id), :method => :delete %>
+                <% elsif order.status == "rejected" %>
+                    Status: Rejected <%= link_to 'Cancel Trade', portfolio_order_path(portfolio_id: @portfolio.id, id: order.id), :method => :delete %>
+                <% else %>
+                    Status: Sold
+                <% end %>
+            </p>
 
             <% if order.status == "pending" %>
-                Held at: $<%= number_with_precision(order.purchase_price, precision: 2) %>
-                <%= link_to 'Cancel Trade', portfolio_order_path(portfolio_id: @portfolio.id, id: order.id), :method => :delete%>
+                <p>Held at: $<%= number_with_precision(order.purchase_price, precision: 2) %></p>
             <% else %>
-                Bought at: $<%= number_with_precision(order.purchase_price, precision: 2) %>
+                <p>Bought at: $<%= number_with_precision(order.purchase_price, precision: 2) %></p>
             <% end %>
 
-            Current Price: $<%= number_with_precision(order.share_price, precision: 2) %> 
+            <p>Current Price: $<%= number_with_precision(order.share_price, precision: 2) %></p> 
 
-            <%= order.order_return_percentage %>
+            <p><%= order.order_return_percentage %></p>
         <% end %>
     <% end %>
 <% end %>

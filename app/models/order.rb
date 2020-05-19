@@ -10,6 +10,16 @@ class Order < ApplicationRecord
         self.name.gsub('&#39;', '\'')
     end
 
+    def sell
+        if self.status == "success"
+            true 
+        elsif self.status == "rejected"
+            false
+        else
+            "pending"
+        end
+    end
+
     def two_dec
         '%.2g'
     end
