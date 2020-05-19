@@ -10,7 +10,9 @@ class Ability
       #user ||= User.new # guest user (not logged in)
       if user.present?
         can :crud, Portfolio, user_id: user.id
-        can :manage, Stock
+        can :crud, Stock
+        can :industries, Stock
+        can :industry, Stock
         can :create, Order 
         can :edit, Order
         can :update, Order
