@@ -1,1 +1,5 @@
-filter page
+<%= form_tag complete_path, :method => :put do %>
+    <%= collection_check_boxes :stock, :id, Stock.all, :id, :name %>
+    <%= submit_tag 'submit'  %>
+<% end %>
+

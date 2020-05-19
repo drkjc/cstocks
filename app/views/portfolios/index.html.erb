@@ -1,7 +1,7 @@
 Welcome | 
 <%= link_to 'Sign out', destroy_user_session_path, method: :delete %> | 
 <% if can? :filter, Stock %>
-    <%=  link_to 'Filter Stocks', filter_path %>
+    <%=  link_to 'Filter Stocks', managers_filter_path(current_user) %>
 <% end %>
 
 <% if can? :crud, Order %>

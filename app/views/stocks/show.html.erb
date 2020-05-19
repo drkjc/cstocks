@@ -4,16 +4,21 @@
 <h2><%= @stock.name %></h2>
 <h3>Current Price: $<%= @prices["price"] %></h3>
 <%= link_to 'Read More', @stock.summary_quote %>
-<h3>Request Trade:<h3>
-<%= form_for @portfolio.orders.build do |o| %>
-    <%= o.label :number_of_shares %>
-    <%= o.number_field :number_of_shares %>
-    <%= o.hidden_field :symbol, :value => @stock.symbol %>
-    <%= o.hidden_field :portfolio_id, :value => @portfolio.id %>
-    <%= o.hidden_field :share_price, :value => @prices["price"]%>
-    <%= o.hidden_field :purchase_price, :value => @prices["price"] %>
-    <%= o.hidden_field :name, :value => @stock.name %>
-    <%= o.submit 'Request Trade' %>
+
+<% if @stock.available %>
+    <h3>Request Trade:<h3>
+    <%= form_for @portfolio.orders.build do |o| %>
+        <%= o.label :number_of_shares %>
+        <%= o.number_field :number_of_shares %>
+        <%= o.hidden_field :symbol, :value => @stock.symbol %>
+        <%= o.hidden_field :portfolio_id, :value => @portfolio.id %>
+        <%= o.hidden_field :share_price, :value => @prices["price"]%>
+        <%= o.hidden_field :purchase_price, :value => @prices["price"] %>
+        <%= o.hidden_field :name, :value => @stock.name %>
+        <%= o.submit 'Request Trade' %>
+    <% end %>
+<% else %>
+    <h3>Stock Unavailable</h3>
 <% end %>
 
 
