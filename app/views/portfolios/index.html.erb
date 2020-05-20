@@ -14,29 +14,29 @@
     </header>
 
     <div class="portfolios-container">
-        <% if can? :crud, Order %>
+        <% if can? :crud, User %>
             <% Portfolio.all.each do |p| %>
                 <% if p.manager_id == current_user.id %>
-                    <a href="/portfolios/<%= p.id %>" >
-                        <div class="portfolios-list">
-                            <h1><%= p.user.username %></h1>
-                            <div class="portfolio-info">
-                                <% if p.direction == "Down" %> 
-                                    <p class="down"> <%= p.direction %></p>
-                                <% else %>
-                                    <p class="up"><%= p.direction %></p>
-                                <% end %>
-                                <p> <%= number_with_precision(p.return_percentage, precision: 2) %></p>
+                        <div class="customer-portfolio-container">
+                            <div class="customer-portfolios-list">
+                                <h1><a href="/portfolios/<%=p.id%>"><%= p.user.username %></a></h1>
                                 <% p.orders.each do |o| %>
                                     <% if o.status == "pending" %>
-                                        <p>Purchase Order: <%= link_to o.symbol, edit_portfolio_order_path(portfolio_id: o.portfolio.id, id: o.id) %><p>
+                                        <p>Purchase Order: <%= link_to(o.symbol, edit_portfolio_order_path(portfolio_id: o.portfolio.id, id: o.id)) %></p>
                                     <% elsif o.status == "pending sale" %>
-                                        <p>Pending Sale: <%= link_to o.symbol, edit_portfolio_order_path(portfolio_id: o.portfolio.id, id: o.id) %></p>
+                                        <p>Pending Sale: <%= link_to(o.symbol, edit_portfolio_order_path(portfolio_id: o.portfolio.id, id: o.id)) %></p>
                                     <% end %>
                                 <% end %>
+                                <div class="portfolio-info">
+                                    <% if p.direction == "Down" %> 
+                                        <p class="down"><%= p.direction %></p>
+                                    <% else %>
+                                        <p class="up"><%= p.direction %></p>
+                                    <% end %>
+                                    <p> <%= number_with_precision(p.return_percentage, precision: 2) %></p>
+                                </div>
                             </div>
                         </div>
-                    </a>
                 <% end %>
             <% end %>
         <% else %>
