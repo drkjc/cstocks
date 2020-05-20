@@ -22,7 +22,7 @@
 }
 
 #portfolio-index-container .portfolios-container {
-    //display: flex;
+    display: flex;
 
     a {
         display: flex;
@@ -61,12 +61,27 @@
     }
 }
 
+#portfolio-show-container {
+    display: flex;
+    flex-direction: column;
+}
+
 #portfolio-show-container header {
     justify-content: flex-start;
 
     h3 {
         padding-left: 10px;
     }
+
+    .user {
+        display: flex;
+        align-items: center;
+    }
+
+}
+
+div.show {
+    padding-left: 5rem;
 }
 
 #balance-info {

@@ -33,12 +33,13 @@ class Portfolio < ApplicationRecord
     end
 
     def holdings 
-        total_holdings = self.orders.inject(0) do |sum, o|
+        sum = 0
+        self.orders.each do |o|
             if o.status == "success" || o.status == "pending sale"
-                sum + o.balance.to_f
+                sum += o.balance.to_f
             end
-        end 
-        total_holdings != nil ? total_holdings.to_f : 0
+        end
+        sum 
     end
 
 end
