@@ -2,18 +2,27 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-#portfolio-index-container header {
+.portfolio-container header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: 10px;
     
     h1 {
         padding-left: 1rem;
     }
 }
 
-#portfolios-container {
-    display: flex;
+.down {
+    color: red;
+}
+
+.up {
+    color: green;
+}
+
+.portfolios-container {
+    //display: flex;
 
     a {
         display: flex;
@@ -43,13 +52,6 @@
                     font-size: 2rem;
                 }
 
-                p.down {
-                    color: red;
-                }
-
-                p.up {
-                    color: green;
-                }
             }
         }
     }
@@ -57,4 +59,22 @@
     a:hover {
         box-shadow: 2px 2px black;
     }
+
+    #balance-info {
+        display: flex;
+        width: 100%;
+        background: white;
+        align-items: center;
+
+        span,
+        span a {
+            background: white;
+            padding: 10px;
+        }
+
+    }
+}
+
+#portfolio-show-container header {
+    justify-content: flex-start;
 }

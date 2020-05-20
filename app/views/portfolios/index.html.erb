@@ -1,4 +1,4 @@
-<div id="portfolio-index-container">
+<div id="portfolio-index-container" class="portfolio-container">
     <header>
         <% if current_user.manager_role %>
             <h1>Customer Portfolios</h1>
@@ -13,7 +13,7 @@
         </div>
     </header>
 
-    <div id="portfolios-container">
+    <div class="portfolios-container">
         <% if can? :crud, Order %>
             <% Portfolio.all.each do |p| %>
                 <% if p.manager_id == current_user.id %>
