@@ -1,6 +1,7 @@
 
 <div id="filter-div">
-    <h1>Check boxes to make stocks available<h1>
+    <h3><%= link_to 'Home', portfolios_path %></h3>
+    <u><h1>Check boxes to make stocks unavailable<h1></u>
     <%= form_for :stock, url: complete_path, method: :put, :html => { :class => "filter-form"} do |f| %>
         <%= f.collection_check_boxes(:id, Stock.all, :id, :name) do |s| %>
             <%= s.label class:"label-checkbox grid-item" do %>

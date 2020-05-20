@@ -40,7 +40,6 @@ class StocksController < ApplicationController
 
     def complete
         # TODO mark selected tasks as complete
-        raise params.inspect
         stock_ids = params[:stock][:id]
         Stock.all.each do |stock|
             if stock_ids.include?(stock.id.to_s)
