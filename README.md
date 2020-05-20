@@ -1,24 +1,55 @@
-# README
+# cstocks
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+With cstocks you can - 
 
-Things you may want to cover:
+- Explore Stock Offerings!
+- Request Trades!
+- Request Sales!
+- Monitor Your Portfolio!
 
-* Ruby version
+* All trades made by portfolio managers *
 
-* System dependencies
+## Getting Started 
 
-* Configuration
+Clone the project. 
 
-* Database creation
+run 
+```bundle install```
 
-* Database initialization
+run 
+```rails db:migrate```
 
-* How to run the test suite
+run 
+```rails db:seed```
 
-* Services (job queues, cache servers, search engines, etc.)
+run 
+```bundle exec figaro install```
 
-* Deployment instructions
+Navigate to https://www.alphavantage.co/support/#api-key to get a free API key!
 
-* ...
+Add API key to config/application.yml
+
+```av_api_key: "* your api key *"```
+
+run the server! 
+
+```rails s```
+
+Login w/ ```email: derek@test.com, password: 'password'``` to explore as a user
+Login w/ ```email: kelley@test.com, password: 'password'``` to explore as a manager
+
+## Built with 
+
+Rails 6.0.3
+
+## Contributing
+
+Not accepting contributions at this time.
+
+## Authors
+
+* **Derek Cerretani** = [drkjc](https://github.com/drkjc)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
