@@ -35,8 +35,8 @@ run the server!
 
 ```rails s```
 
-Login w/ ```email: derek@test.com, password: 'password'``` to explore as a user
-Login w/ ```email: kelley@test.com, password: 'password'``` to explore as a manager
+*Login w/ ```email: derek@test.com, password: 'password'``` to explore as a user.
+*Login w/ ```email: kelley@test.com, password: 'password'``` to explore as a manager
 
 ## Built with 
 
