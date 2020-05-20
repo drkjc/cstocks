@@ -1,5 +1,7 @@
 # cstocks
 
+[Video Walkthrough](https://youtu.be/Ax6HBTDxPZk)
+
 With cstocks you can - 
 
 - Explore Stock Offerings!
