@@ -1,10 +1,12 @@
-<h1>Industries</h1>
-<%= content_tag :ul do %>
-    <% @industries.each do |ind, stocks| %>
-        <% if ind == 'n/a' %>
-           <%= link_to(content_tag(:li, 'Other'), portfolio_industry_path(portfolio_id: @portfolio.id, slug: ind)) %>
-        <% else %>
-           <%= link_to(content_tag(:li, ind), portfolio_industry_path(portfolio_id: @portfolio.id, slug: ind)) %>
+<div id="industries-container">
+    <h1>Industries</h1>
+    <%= content_tag :ul, class: "industries-list" do %>
+        <% @industries.each do |ind, stocks| %>
+            <% if ind == 'n/a' %>
+            <%= link_to(content_tag(:li, 'Other'), portfolio_industry_path(portfolio_id: @portfolio.id, slug: ind), class: "grid-item") %>
+            <% else %>
+            <%= link_to(content_tag(:li, ind), portfolio_industry_path(portfolio_id: @portfolio.id, slug: ind), class: "grid-item") %>
+            <% end %>
         <% end %>
     <% end %>
-<% end %>
+</div>

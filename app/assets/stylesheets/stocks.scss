@@ -41,3 +41,35 @@
     }
 }
 
+#industries-container {
+    text-align: center;
+
+    h1 {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .industries-list,
+    .industries-stock-list {
+        display: grid;
+        grid-template-columns: auto auto;
+        //text-align: center;
+
+        .grid-item {
+            text-decoration: none;
+            color: black;
+            font-size: 1.2rem;
+            align-items: center;
+        }
+
+        .grid-item:hover {
+            color: rgb(0, 118, 118);
+            font-size: 1.3rem;
+            transition: 0.5s;
+            background: white;
+        }
+
+    }
+}
+
+

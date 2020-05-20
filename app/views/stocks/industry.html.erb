@@ -1,6 +1,8 @@
-<h1><%= @industry_name %></h1>
-<%= content_tag :ul do %>
-    <% @industry.each do |stock| %>
-        <%= link_to(content_tag(:li, stock.symbol), portfolio_stock_path(portfolio_id: @portfolio.id, id: stock.id)) %> <%= stock.name %>
+<div id="industries-container">
+    <h1><%= @industry_name %></h1>
+    <%= content_tag :ul class: "industry-stock-list" do %>
+        <% @industry.each do |stock| %>
+            <%= link_to(content_tag(:li, stock.symbol), portfolio_stock_path(portfolio_id: @portfolio.id, id: stock.id), class: "grid-item") %> <%= stock.name %>
+        <% end %>
     <% end %>
-<% end %>
+</div>
