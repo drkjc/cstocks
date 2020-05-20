@@ -1,43 +1,48 @@
 
-<%= link_to 'Reject Trade', portfolio_order_path(portfolio_id: @portfolio.id, id: @order.id), :method => :delete%>
-<%= link_to 'Portfolio', portfolio_path(@order.portfolio) %>
+<div class="sign-links">
+    <%= link_to 'Reject Trade', portfolio_order_path(portfolio_id: @portfolio.id, id: @order.id), :method => :delete, class: "nav"%>
+    <%= link_to 'Portfolio', portfolio_path(@order.portfolio), class: "nav" %>
+</div>
 
-    <% if @order.status == "pending" && current_user.manager_role == true %>
-        <%= render partial: "stock_info", locals: { order: @order, stock: @stock } %>
-        <%= form_for @order do |o| %>
-            <%= o.label :number_of_shares %>
-            <%= o.number_field :number_of_shares %>
-            <%= o.hidden_field :share_price %>
-            <%= o.hidden_field :portfolio_id, :value => @portfolio.id %>
-            <%= o.hidden_field :status, :value => "success" %>
-            <%= o.submit 'Approve Trade' %>
+
+<div class="form-container">
+        <% if @order.status == "pending" && current_user.manager_role == true %>
+            <%= render partial: "stock_info", locals: { order: @order, stock: @stock } %>
+            <%= form_for @order, :html => {:class => 'edit-form'} do |o| %>
+                <%= o.label :number_of_shares %>
+                <%= o.number_field :number_of_shares %>
+                <%= o.hidden_field :share_price %>
+                <%= o.hidden_field :portfolio_id, :value => @portfolio.id %>
+                <%= o.hidden_field :status, :value => "success" %>
+                <%= o.submit 'Approve Trade' %>
+            <% end %>
         <% end %>
-    <% end %>
 
-    <% if @order.status == "success" %>
-        <%= render partial: "stock_info", locals: { order: @order, stock: @stock } %>
-        <%= form_for @order do |o| %>
-            <%= o.label :number_of_shares %>
-            <%= o.number_field :number_of_shares %>
-            <%= o.hidden_field :share_price %>
-            <%= o.hidden_field :status, :value => "pending sale" %>
-            <%= o.hidden_field :portfolio_id, :value => @portfolio.id %>
-            <%= o.submit 'Request Sale' %>
+        <% if @order.status == "success" %>
+            <%= render partial: "stock_info", locals: { order: @order, stock: @stock } %>
+            <%= form_for @order, :html => {:class => 'edit-form'} do |o| %>
+                <%= o.label :number_of_shares %>
+                <%= o.number_field :number_of_shares %>
+                <%= o.hidden_field :share_price %>
+                <%= o.hidden_field :status, :value => "pending sale" %>
+                <%= o.hidden_field :portfolio_id, :value => @portfolio.id %>
+                <%= o.submit 'Request Sale' %>
+            <% end %>
         <% end %>
-    <% end %>
 
 
-    <% if @order.status == "pending sale" && current_user.manager_role == true %>
-        <%= render partial: "stock_info", locals: { order: @order, stock: @stock } %>
-        <%= form_for @order, :method => :delete do |o| %>
-            <%= o.label :number_of_shares %>
-            <%= o.number_field :number_of_shares %>
-            <%= o.hidden_field :share_price %>
-            <%= o.hidden_field :status, :value => "sold" %>
-            <%= o.hidden_field :portfolio_id, :value => @portfolio.id %>
-            <%= o.submit 'Sell Stock' %>
+        <% if @order.status == "pending sale" && current_user.manager_role == true %>
+            <%= render partial: "stock_info", locals: { order: @order, stock: @stock } %>
+            <%= form_for @order, :html => {:class => 'edit-form'}, :method => :delete do |o| %>
+                <%= o.label :number_of_shares %>
+                <%= o.number_field :number_of_shares %>
+                <%= o.hidden_field :share_price %>
+                <%= o.hidden_field :status, :value => "sold" %>
+                <%= o.hidden_field :portfolio_id, :value => @portfolio.id %>
+                <%= o.submit 'Sell Stock' %>
+            <% end %>
         <% end %>
-    <% end %>
+    </div>
 
 
 

@@ -72,4 +72,41 @@
     }
 }
 
+.form-container {
+    border: 2px solid white;
+    text-align: center;
+
+    h3 {
+        padding: 10px;
+    }
+    
+    .price {
+        color: green;
+    }
+}
+
+.edit-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+
+    [type=number],
+    [type=submit] {
+        width: 200px;
+        padding: 10px;
+    }
+
+    [type=number] {
+        background: white;
+        font-size: 1.3rem;
+        text-align: center;
+    }
+
+    [type=submit] {
+        background-color: lightsteelblue;
+    }
+}
+
+
 
