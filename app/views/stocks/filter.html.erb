@@ -1,5 +1,12 @@
-<%= form_tag complete_path, :method => :put do %>
-    <%= collection_check_boxes :stock, :id, Stock.all, :id, :name %>
-    <%= submit_tag 'submit'  %>
-<% end %>
+
+<div id="filter-div">
+    <%= form_for :stock, url: complete_path, method: :put do |f| %>
+        <%= f.collection_check_boxes(:id, Stock.all, :id, :name) do |s| %>
+            <%= s.label class:"label-checkbox" do %>
+                <%= s.check_box + s.text %>
+            <% end %>
+        <% end  %>
+        <%= f.submit %>
+    <% end %>
+</div>
 

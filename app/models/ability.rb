@@ -24,6 +24,7 @@ class Ability
           can :crud, Portfolio
           can :crud, Order
           can :filter, Stock
+          can :complete, Stock
 
           if user.superadmin_role?
             can :manage, :all
