@@ -1,7 +1,9 @@
 
 <div class="sign-links">
-    <%= link_to 'Reject Trade', portfolio_order_path(portfolio_id: @portfolio.id, id: @order.id), :method => :delete, class: "nav"%>
-    <%= link_to 'Portfolio', portfolio_path(@order.portfolio), class: "nav" %>
+    <% if current_user.manager_role == true %>
+        <%= link_to 'Reject Trade', portfolio_order_path(portfolio_id: @portfolio.id, id: @order.id), :method => :delete, class: "nav"%>
+    <% end %>
+    <%= link_to 'Portfolio', portfolio_path(@portfolio), class: "nav" %>
 </div>
 
 

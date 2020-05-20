@@ -7,7 +7,7 @@
         <h1><%= @stock.symbol %></h1>
         <h2><%= @stock.name %></h2>
         <h3>Current Price: $<span class="price"><%= @prices["price"] %></span></h3>
-        <%= link_to 'Read More', @stock.summary_quote %>
+        <%= link_to 'Read More', @stock.summary_quote, target: :_blank %>
     </div>
 
     <% if @stock.available %>

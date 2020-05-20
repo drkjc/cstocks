@@ -21,6 +21,9 @@
 
     <div>
         <div id="balance-info">
+            <% if current_user.manager_role == true  %>
+                <span>Manager Permissions</span>
+            <% end %>
             <span>Trading Balance: $<%= number_with_precision(@portfolio.current_balance, precision: 2) %></span> 
             <span>Holdings: $<%= number_with_precision(@portfolio.holdings, precision: 2) %></span>
             <span><%= link_to 'Research Stocks', industries_path(@portfolio) %></span>

@@ -5,6 +5,7 @@ class Ability
 
   def initialize(user)
     alias_action :create, :read, :update, :destroy, to: :crud
+    can :index, Stock
     # Define abilities for the passed in user here. For example:
     #
       #user ||= User.new # guest user (not logged in)
