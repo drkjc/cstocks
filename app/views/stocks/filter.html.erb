@@ -1,12 +1,13 @@
 
 <div id="filter-div">
-    <%= form_for :stock, url: complete_path, method: :put do |f| %>
+    <h1>Check boxes to make stocks available<h1>
+    <%= form_for :stock, url: complete_path, method: :put, :html => { :class => "filter-form"} do |f| %>
         <%= f.collection_check_boxes(:id, Stock.all, :id, :name) do |s| %>
-            <%= s.label class:"label-checkbox" do %>
+            <%= s.label class:"label-checkbox grid-item" do %>
                 <%= s.check_box + s.text %>
             <% end %>
         <% end  %>
-        <%= f.submit %>
+        <%= f.submit "FILTER STOCKS" %>
     <% end %>
 </div>
 

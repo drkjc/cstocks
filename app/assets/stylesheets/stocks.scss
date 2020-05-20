@@ -1,6 +1,35 @@
 // Place all the styles related to the Stocks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.filter-div {
+    margin: 50px;
+}
+
+.filter-form {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto auto auto;
+    bottom: 2rem;
+}
+
 .label-checkbox {
-    display: flex;
+    padding: 10px;
+    font-size: 1.5rem;
+}
+
+.filter-form [type=submit] {
+    background: red;
+    font-size: x-large;
+    font-weight: bold;
+    color: white;
+    border-radius: 5px;
+}
+
+.filter-form input[type=checkbox] {
+    font-size: 200px;
+}
+
+.filter-form [type=submit]:hover {
+    transition: 5s;
+    border-radius: 50%;
+    box-shadow: 2px 2px black;
 }
