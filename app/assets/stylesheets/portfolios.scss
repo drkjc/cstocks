@@ -21,7 +21,7 @@
     color: green;
 }
 
-.portfolios-container {
+#portfolio-index-container .portfolios-container {
     //display: flex;
 
     a {
@@ -59,22 +59,79 @@
     a:hover {
         box-shadow: 2px 2px black;
     }
-
-    #balance-info {
-        display: flex;
-        width: 100%;
-        background: white;
-        align-items: center;
-
-        span,
-        span a {
-            background: white;
-            padding: 10px;
-        }
-
-    }
 }
 
 #portfolio-show-container header {
     justify-content: flex-start;
+
+    h3 {
+        padding-left: 10px;
+    }
+}
+
+#balance-info {
+    display: flex;
+    width: 100%;
+    background: white;
+    align-items: center;
+
+    span,
+    span a {
+        background: white;
+        padding: 10px;
+    } 
+}
+
+.order-stock {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    align-items: center;
+    text-align: center;
+    background: lightsteelblue;
+    border-bottom: 1px solid black;
+
+    h3 > a {
+        text-decoration: none;
+        color: black;
+        background: lightsteelblue;
+    }
+
+    h3 > a:hover {
+        transition: .5s;
+        color: goldenrod;
+        text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+
+    }
+
+}
+
+.order-info > *, 
+.order-info p > a,
+.order-info h3 > a {
+    background: lightsteelblue;
+    margin-right: 1rem;
+}
+
+.order-info {
+    display: flex;
+    background: lightsteelblue;
+    
+    p {
+        width: 8rem;
+    }
+
+    p > a {
+        text-decoration: none;
+        color: forestgreen;
+    }
+
+    p > a:hover {
+        font-weight: bold;
+    }
+
+    p > strong {
+        background: lightsteelblue;
+    }
+    
 }

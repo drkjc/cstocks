@@ -28,16 +28,17 @@
             <% if @portfolio.orders.empty? %>
                 Your portfolio is empty.
             <% else %>
-                <% @portfolio.orders.each do |order| %>
-                    <div>
-                        <div class="orders-info">
+                <div class="orders-container">
+                    <% @portfolio.orders.each do |order| %>
+                        <div class="order-stock">
+                            <h3><%= link_to "#{order.symbol} - #{order.name}", stocks_path(portfolio_id: @portfolio.id, slug: order.symbol) %></h3>
+
                             <div class="order-info">
-                                <%= content_tag(:h3, order.symbol) %> <%= link_to order.stock_name, stocks_path(portfolio_id: @portfolio.id, slug: order.symbol) %>
-                                <p>Total: $<%= number_with_precision((order.share_value), precision: 2) %></p>
-                                <p>Shares: <%= order.number_of_shares %></p>
+                                <p>Total: <strong>$<%= number_with_precision((order.share_value), precision: 2) %></strong></p>
+                                <p>Shares: <strong><%= order.number_of_shares %></strong></p>
                                 <p>
                                     <% if order.status == "success" %>
-                                        <%= link_to 'Request Sell', edit_portfolio_order_path(portfolio_id: @portfolio.id, id: order.id) %>
+                                        <%= link_to 'Request Sale', edit_portfolio_order_path(portfolio_id: @portfolio.id, id: order.id) %>
                                     <% elsif order.status == "pending" %>
                                         Status: Pending <%= link_to 'Cancel Trade', portfolio_order_path(portfolio_id: @portfolio.id, id: order.id), :method => :delete %>
                                     <% elsif order.status == "rejected" %>
@@ -51,16 +52,16 @@
                                 <% if order.status == "pending" %>
                                     <p>Held at: $<%= number_with_precision(order.purchase_price, precision: 2) %></p>
                                 <% else %>
-                                     <p>Bought at: $<%= number_with_precision(order.purchase_price, precision: 2) %></p>
+                                    <p>Bought at: $<%= number_with_precision(order.purchase_price, precision: 2) %></p>
                                 <% end %>
 
-                                <p>Current Price: $<%= number_with_precision(order.share_price, precision: 2) %></p> 
+                                <p>Current Price: <strong>$<%= number_with_precision(order.share_price, precision: 2) %></strong></p> 
 
                                 <p><%= order.order_return_percentage %></p>
                             </div>
                         </div>
-                    </div>
-                <% end %>
+                    <% end %>
+                </div>
             <% end %>
         </div>
     </div>
