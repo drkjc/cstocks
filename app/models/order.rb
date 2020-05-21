@@ -3,10 +3,12 @@ class Order < ApplicationRecord
     belongs_to :portfolio
 
     def share_value
+        #calculate share value for each stock
         self.number_of_shares * self.share_price.to_f
     end
 
     def stock_name
+        #display stock name
         self.name.gsub('&#39;', '\'')
     end
 
@@ -21,6 +23,7 @@ class Order < ApplicationRecord
     end
 
     def two_dec
+        # changes percentage to be to 2 decimal places
         '%.2g'
     end
 

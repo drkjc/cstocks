@@ -9,6 +9,7 @@ class Portfolio < ApplicationRecord
 #     end
 
     def get_current_prices
+        # grabs the users held stocks and makes api requests for to get current prices for each one
         self.orders.map do |o|
             response = Stock.find_from_api(o.symbol)
             o.share_price = response["price"]
@@ -19,6 +20,7 @@ class Portfolio < ApplicationRecord
     end
 
     def return_percentage
+        # return total portfolio return percentage
         if self.current_balance == self.balance 
             "Invest today!"
         elsif self.holdings.to_f + self.current_balance.to_f < self.balance 
@@ -29,10 +31,13 @@ class Portfolio < ApplicationRecord
     end
 
     def direction
+        # returns up or down to signal which way the portfolio is going
         self.current_balance + self.holdings > self.balance ? "Up" : "Down"
     end
 
     def holdings 
+        # return total holdings for each stock combined
+        # .inspect was returning nil?
         sum = 0
         self.orders.each do |o|
             if o.status == "success" || o.status == "pending sale"

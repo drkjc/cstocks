@@ -4,6 +4,7 @@ class Connection
 
 
     def self.api
+        #makes faraday connection
         fara = Faraday.new(url: BASE) do |f|
             f.response :logger 
             f.adapter Faraday.default_adapter

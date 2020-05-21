@@ -16,6 +16,7 @@ class OrdersController < ApplicationController
     end
 
     def update
+        # update order depending on status
         @order = Order.find(params[:id])
         if @order.status == "pending"
             @order.update(order_params)
@@ -31,6 +32,7 @@ class OrdersController < ApplicationController
     end
 
     def destroy
+        # users can only delete already sold stocks, managers can sell or reject orders.
         if params[:portfolio_id]
             portfolio = Portfolio.find(params[:portfolio_id])
         elsif params[:order][:portfolio_id]

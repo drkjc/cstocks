@@ -22,7 +22,6 @@ class StocksController < ApplicationController
     end
 
     def show
-        
         @portfolio = Portfolio.find(params[:portfolio_id])
         @stock = Stock.find(params[:id])
         @prices = Stock.find_from_api(@stock.symbol)
@@ -40,11 +39,11 @@ class StocksController < ApplicationController
     end
 
     def complete
-        # TODO mark selected tasks as complete
+        # filter stocks by ids
         stock_ids = params[:stock][:id]
         Stock.all.each do |stock|
             if stock_ids.include?(stock.id.to_s)
-                stock.available = true
+                stock.available = false
                 stock.save
             end
         end
